@@ -38,6 +38,28 @@ def addSimpleDataElement(name, value):
 
 
 def addPlaceMrk(placemark):
+    pm_style_url_tag = etree.fromstring('''
+    <styleUrl>#pointStyleMap</styleUrl>
+    ''')
+    pm_style_tag = etree.fromstring('''
+    <Style id="inline">
+        <IconStyle>
+            <color>ff00aaff</color>
+            <colorMode>normal</colorMode>
+            <Icon>
+                <href>http://maps.google.com/mapfiles/kml/paddle/red-diamond.png</href>
+            </Icon>
+        </IconStyle>
+        <LineStyle>
+            <color>ff00aaff</color>
+            <colorMode>normal</colorMode>
+        </LineStyle>
+        <PolyStyle>
+            <color>ff00aaff</color>
+            <colorMode>normal</colorMode>
+        </PolyStyle>
+    </Style>
+    ''')
     pop_pm = etree.Element('Placemark')
     pop_name = etree.Element('name')
     if placemark.comment:
@@ -45,6 +67,8 @@ def addPlaceMrk(placemark):
         pop_pm.append(comment)
     pop_name.text = placemark.cli_code
     pop_pm.append(pop_name)
+    pop_pm.append(pm_style_url_tag)
+    pop_pm.append(pm_style_tag)
 
     ed = etree.Element('ExtendedData')
     pop_pm.append(ed)

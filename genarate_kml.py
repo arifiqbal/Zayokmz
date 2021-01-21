@@ -41,17 +41,23 @@ main_doc_tag = etree.fromstring('''
 			</Icon>
 		</IconStyle>
 		<BalloonStyle>
-			<text><![CDATA[<table border="0">
-  <tr><td><b>CLLI</b></td><td>$[clean_locations_temp/CLLI]</td></tr>
-  <tr><td><b>Site</b></td><td>$[clean_locations_temp/Site]</td></tr>
-  <tr><td><b>Long</b></td><td>$[clean_locations_temp/Long]</td></tr>
-  <tr><td><b>Lat</b></td><td>$[clean_locations_temp/Lat]</td></tr>
-  <tr><td><b>Street</b></td><td>$[clean_locations_temp/Street]</td></tr>
-  <tr><td><b>City</b></td><td>$[clean_locations_temp/City]</td></tr>
-  <tr><td><b>State</b></td><td>$[clean_locations_temp/State]</td></tr>
-  <tr><td><b>Country</b></td><td>$[clean_locations_temp/Country]</td></tr>
-  <tr><td><b>Equipment</b></td><td>$[clean_locations_temp/Equipment]</td></tr>
-</table>]]></text>
+			<text>
+			<!-- cdata_start -->
+			<![CDATA[
+                <table border="0">
+                  <tr><td><b>CLLI</b></td><td>$[clean_locations_temp/CLLI]</td></tr>
+                  <tr><td><b>Site</b></td><td>$[clean_locations_temp/Site]</td></tr>
+                  <tr><td><b>Long</b></td><td>$[clean_locations_temp/Long]</td></tr>
+                  <tr><td><b>Lat</b></td><td>$[clean_locations_temp/Lat]</td></tr>
+                  <tr><td><b>Street</b></td><td>$[clean_locations_temp/Street]</td></tr>
+                  <tr><td><b>City</b></td><td>$[clean_locations_temp/City]</td></tr>
+                  <tr><td><b>State</b></td><td>$[clean_locations_temp/State]</td></tr>
+                  <tr><td><b>Country</b></td><td>$[clean_locations_temp/Country]</td></tr>
+                  <tr><td><b>Equipment</b></td><td>$[clean_locations_temp/Equipment]</td></tr>
+                </table>
+            ]]>
+            <!-- cdata_end -->
+            </text>
 		</BalloonStyle>
 	</Style>
 	<Style id="hlightPointStyle">
@@ -61,17 +67,23 @@ main_doc_tag = etree.fromstring('''
 			</Icon>
 		</IconStyle>
 		<BalloonStyle>
-			<text><![CDATA[<table border="0">
-  <tr><td><b>CLLI</b></td><td>$[clean_locations_temp/CLLI]</td></tr>
-  <tr><td><b>Site</b></td><td>$[clean_locations_temp/Site]</td></tr>
-  <tr><td><b>Long</b></td><td>$[clean_locations_temp/Long]</td></tr>
-  <tr><td><b>Lat</b></td><td>$[clean_locations_temp/Lat]</td></tr>
-  <tr><td><b>Street</b></td><td>$[clean_locations_temp/Street]</td></tr>
-  <tr><td><b>City</b></td><td>$[clean_locations_temp/City]</td></tr>
-  <tr><td><b>State</b></td><td>$[clean_locations_temp/State]</td></tr>
-  <tr><td><b>Country</b></td><td>$[clean_locations_temp/Country]</td></tr>
-  <tr><td><b>Equipment</b></td><td>$[clean_locations_temp/Equipment]</td></tr>
-</table>]]></text>
+			<text>
+			<!-- cdata_start -->
+			<![CDATA[
+			<table border="0">
+              <tr><td><b>CLLI</b></td><td>$[clean_locations_temp/CLLI]</td></tr>
+              <tr><td><b>Site</b></td><td>$[clean_locations_temp/Site]</td></tr>
+              <tr><td><b>Long</b></td><td>$[clean_locations_temp/Long]</td></tr>
+              <tr><td><b>Lat</b></td><td>$[clean_locations_temp/Lat]</td></tr>
+              <tr><td><b>Street</b></td><td>$[clean_locations_temp/Street]</td></tr>
+              <tr><td><b>City</b></td><td>$[clean_locations_temp/City]</td></tr>
+              <tr><td><b>State</b></td><td>$[clean_locations_temp/State]</td></tr>
+              <tr><td><b>Country</b></td><td>$[clean_locations_temp/Country]</td></tr>
+              <tr><td><b>Equipment</b></td><td>$[clean_locations_temp/Equipment]</td></tr>
+            </table>
+            ]]>
+            <!-- cdata_start -->
+            </text>
 		</BalloonStyle>
 	</Style>
 	<StyleMap id="pointStyleMap">
@@ -309,6 +321,7 @@ bb_doc_tag = etree.fromstring('''
 			
 </Document>
  ''')
+
 
 
 if __name__ == "__main__":
