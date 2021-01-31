@@ -19,3 +19,16 @@ class PlaceMark:
 
     def setLattitude(self, lat):
         self.lat = lat
+
+    def __str__(self):
+        print(self.cli_code)
+        print(self.site)
+        print(self.street)
+        print(self.city)
+        print(self.state)
+        print(self.country)
+        print(self.equipment)
+        print(self.long)
+        print(self.lat)
+        print(self.comment)
+        return '---'

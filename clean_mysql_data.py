@@ -41,6 +41,10 @@ def truncate_pop_data():
     curser.execute(sql)
     logging.info("truncated test.tbl_back_bone")
 
+    sql = "truncate test.tbl_back_bone_log"
+    curser.execute(sql)
+    logging.info("truncated test.tbl_back_bone_log")
+
     mydb.commit()
 
 if __name__ == "__main__":

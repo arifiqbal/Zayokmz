@@ -341,27 +341,36 @@ if __name__ == "__main__":
     comment = etree.Comment("Backbone document start")
     main_folder.append(comment)
     main_folder.append(bb_doc_tag)
-    bb_folder = etree.Element('Folder')
     comment = etree.Comment("Backbone document end")
     main_folder.append(comment)
 
-    bb_folder = etree.Element('Folder')
-    bb_doc_tag.append(bb_folder)
+
 
     # processing BB data
     curser.execute(
         "SELECT bb.from_cli,bb.to_cli,"
         "from_cordinates.longitude from_longitude,from_cordinates.lattitude from_lattitude,"
-        "to_cordinates.longitude to_longitude,to_cordinates.lattitude to_lattitude FROM"
-        " test.tbl_back_bone bb,test.tbl_cli_cordinates from_cordinates,test.tbl_cli_cordinates to_cordinates "
+        "to_cordinates.longitude to_longitude,to_cordinates.lattitude to_lattitude,(SELECT cnf.color from test.tbl_config cnf WHERE cnf.network = bb.nw_code) color,"
+        "(SELECT cnf.name from test.tbl_config cnf WHERE cnf.network = bb.nw_code) nw_name FROM"
+        " test.tbl_back_bone_log bb,test.tbl_cli_cordinates from_cordinates,test.tbl_cli_cordinates to_cordinates "
         "WHERE bb.from_cli=from_cordinates.cli AND bb.to_cli=to_cordinates.cli AND ("
         "bb.from_cli in (select cli_code from  test.tbl_pop_data) OR bb.to_cli in (select cli_code from  test.tbl_pop_data) "
-        ")"
+        ") ORDER BY nw_name"
     )
-    pop_data = curser.fetchall()
-    for y in pop_data:
+    bb_data = curser.fetchall()
+    selected_nw = None
+    for y in bb_data:
+        if selected_nw is None or y[7] != selected_nw:
+            selected_nw = y[7]
+            bb_folder = etree.Element('Folder')
+            bb_doc_tag.append(bb_folder)
+            bb_folder_name_tag = etree.Element('name')
+            bb_folder_name_tag.text = y[7] + 'Network'
+            bb_folder.append(bb_folder_name_tag)
+
+
         bb_cordinates = '%f,%f,0 %f,%f,0' % (y[2], y[3],y[4],y[5])
-        bb_pop_pm = addBBPlaceMrk(y[0], y[1],bb_cordinates)
+        bb_pop_pm = addBBPlaceMrk(y[0], y[1],bb_cordinates,y[6])
         bb_folder.append(bb_pop_pm)
 
     main_doc_tag.append(main_folder)

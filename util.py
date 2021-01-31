@@ -95,12 +95,12 @@ def addPlaceMrk(placemark):
     return pop_pm
 
 
-def addBBPlaceMrk(from_cli, to_cli, cordinate_str):
+def addBBPlaceMrk(from_cli, to_cli, cordinate_str,color):
     print('%s %s %s ' % (from_cli, to_cli, cordinate_str))
     pm_tag_str = '''
     <Placemark>
         <name>BB Facility %s to %s</name>
-        <styleUrl>#m_ylw-pushpin0</styleUrl>
+        <styleUrl>#%s</styleUrl>
         <LineString>
             <tessellate>1</tessellate>
             <coordinates>
@@ -108,7 +108,7 @@ def addBBPlaceMrk(from_cli, to_cli, cordinate_str):
             </coordinates>
         </LineString>
     </Placemark>
-    ''' % (from_cli, to_cli, cordinate_str)
+    ''' % (from_cli, to_cli,color, cordinate_str)
     pm_tag = etree.fromstring(pm_tag_str)
     return pm_tag
 
